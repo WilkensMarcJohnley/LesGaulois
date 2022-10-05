@@ -1,112 +1,61 @@
 package personnages;
 
+
 public class Gaulois {
-private String nom;
-private int force;
-private int effetPotion = 1;
-public Gaulois(String nom, int force) {
-this.nom = nom;
-this.force = force;
-}
-public String getNom() {
-return nom;
-}
-public void parler(String texte) {
-System.out.println(prendreParole() + "« " + texte + "»");
-}
-private String prendreParole() {
-return "Le gaulois " + nom + " : ";
-}
-public void frapper(Romain romain) {
-System.out.println(nom + " envoie un grand coup dans la mâchoire de "
-+ romain.getNom());
-romain.recevoirCoup(force / 3);
-}
-@Override
-public String toString() {
-return "Gaulois [nom=" + nom + ", force=" + force
-+ ", effetPotion=" + effetPotion + "]";
-}
-public static void main(String[] args) {
-//TODO créer un main permettant de tester la classe Gaulois
-}
-}
+	private String nom;
+	private int force;
+	private int effetPotion=1;
+	
+	public void boirePotion(int forcepotion) {
+		effetPotion+=forcepotion;
+		parler(" Merci Druide, je sens que ma force est de " + forcepotion + " decuplee");
+	}
+	
+	public Gaulois(String nom, int force) {
+		super();
+		this.nom = nom;
+		this.force = force;
+	}
 
-public class Romain {
-private String nom;
-private int force;
-public Romain(String nom, int force) {
-this.nom = nom;
-this.force = force;
-}
-public String getNom() {
-return nom;
-}
-public void parler(String texte) {
-System.out.println(prendreParole() + "« " + texte + "»");
-}
-private String prendreParole() {
-return "Le romain " + nom + " : ";
-}
-public void recevoirCoup(int forceCoup) {
-force -= forceCoup;
-if (force > 0) {
-parler("Aïe");
-} else {
-parler("J'abandonne...");
-}
-}
-}
-public class Druide {
-private String nom;
-private int effetPotionMin;
-private int effetPotionMax;
-public Druide(String nom, int effetPotionMin, int effetPotionMax) {
-this.nom = nom;
-this.effetPotionMin = effetPotionMin;
-this.effetPotionMax = effetPotionMax;
-parler("Bonjour, je suis le druide " + nom + " et ma potion peut aller
-d'une force " + effetPotionMin + " à "
-+ effetPotionMax + ".");
-}
-public String getNom() {
-return nom;
-}
-public void parler(String texte) {
-System.out.println(prendreParole() + "« " + texte + "»");
-}
-private String prendreParole() {
-return "Le druide " + nom + " : ";
-}
-}
+	public String getNom() {
+		return nom;
+	}
+  
+	public void parler(String texte) {
+		System.out.println(prendreParole() + "<< " + texte + ">>");
+	}
+	
+	public void frapper(Romain romain) {
+		System.out.println(nom + " envoie un grand coup dans la mâchoire de "
+		+ romain.getNom());
+		romain.recevoirCoup((force / 3)*effetPotion);
+		}
+	
+	private String prendreParole() {
+		return "Le Gaulois " + nom + " : ";
+	}
+	 
+	 public String toString() { 
+		 return "Gaulois [nom=" + nom + ", force=" + force + ", effetPotion= " + effetPotion + "]"; 
+		 }
+	 
+	public static void main(String[] args) {
+		Druide panoramix;
+		int potion;
+		String parole;
+		Romain obelix;
+		Gaulois asterix;
+		panoramix= new Druide("Panoramix",5,10);
+		obelix= new Romain("Obelix",9);
+		parole="je suis un Gaulois, le plus intrepide des tribus";
+		asterix = new Gaulois("Asterix", 8);
+		System.out.println(asterix.getNom());
+		System.out.println(asterix);
+		asterix.parler(parole);
+		asterix.frapper(obelix);
+		potion= panoramix.preparerPotion();
+		asterix.boirePotion(potion);
+		asterix.frapper(obelix);
+	}
 
-public class Chef {
-private String nom;
-private int force;
-private int effetPotion = 1;
-private Village village;
-public Chef(String nom, int force, int effetPotion, Village village) {
-this.nom = nom;
-this.force = force;
-this.effetPotion = effetPotion;
-this.village = village;
 }
-public String getNom() {
-return nom;
-}
-public void parler(String texte) {
-System.out.println(prendreParole() + "« " + texte + "»");
-}
-private String prendreParole() {
-return "Le chef " + nom + " du village " + village.getNom() + " : ";
-}
-public void frapper(Romain romain) {
-System.out.println(nom + " envoie un grand coup dans la mâchoire de " +
-romain.getNom());
-romain.recevoirCoup(force / 3);
-}
-}
-
-
-
-
