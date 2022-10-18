@@ -50,11 +50,13 @@ public class Gaulois {
 //	private String prendreParole() {
 //		return "Le Gaulois " + nom + " : ";
 //	}
+//	
+	
+//	
+//	public String toString() { 
+//		 return "Gaulois [nom=" + nom + ", force=" + force + ", effetPotion= " + effetPotion + "]"; 
+//		 }
 //	 
-	 public String toString() { 
-		 return "Gaulois [nom=" + nom + ", force=" + force + ", effetPotion= " + effetPotion + "]"; 
-		 }
-	 
 	public static void main(String[] args) {
 		Druide panoramix;
 		int potion;

@@ -3,7 +3,6 @@ package personnages;
 
 public class Romain {
 	private String nom;
-	private String texte;
 	private int force;
 	private int effetPotion=1;
 	private Equipement[] equipements= new Equipement[2]; 
@@ -32,30 +31,22 @@ public class Romain {
 		// précondition
 		assert force > 0;
 		int oldForce = force;
-		forceCoup = CalculResistanceEquipement(forceCoup);
+		forceCoup = calculResistanceEquipement(forceCoup);
 		force -= forceCoup;
-		// if (force > 0) {
-		// parler("Aïe");
-		// } else {
-		// equipementEjecte = ejecterEquipement();
-		// parler("J'abandonne...");
-		// }
-		switch (force) {
-		case 0:
-			parler("Aïe");
-		
-		default:
-			equipementEjecte = ejecterEquipement();
-			parler("J'abandonne...");
-			break;
-			}
+		 if (force > 0) {
+		 parler("Aïe");
+		 } else {
+		 equipementEjecte = ejecterEquipement();
+		 parler("J'abandonne...");
+		 }
+		 
 			// post condition la force à diminuer
 			assert force < oldForce;
 			return equipementEjecte;
 			}
 	
-	private int CalculResistanceEquipement(int forceCoup) {
-		texte = "Ma force est de " + this.force + ", et la force du coup est de " + forceCoup;
+	private int calculResistanceEquipement(int forceCoup) {
+		String texte = "Ma force est de " + this.force + ", et la force du coup est de " + forceCoup;
 		int resistanceEquipement = 0;
 		if (!(nbEquipements == 0)) {
 			texte += "\nMais heureusement, grace à mon équipement sa force est diminué de ";
