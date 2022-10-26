@@ -4,7 +4,7 @@ package personnages;
 public class Gaulois {
 	private String nom;
 	private int force; 
-	private int nb_trophees;
+	private int nb_trophees=0;
 	private int effetPotion=1;
 	private Equipement[] frappe = new Equipement[100];
 	
@@ -46,6 +46,16 @@ public class Gaulois {
 		return "Le gaulois " + nom + " : ";
 		}
 
+	public void faireUneDonnation(Musee musee) {
+		if (nb_trophees>0) {
+			parler("« Je donne au musee tous mes trophees :\n");
+			for(int i=nb_trophees;i>0;i--) {
+				System.out.println("- "+ frappe[i]+"\n");
+				musee.donnerTrophees(this,frappe[i]);
+				
+			}
+		}
+	}
 	
 //	private String prendreParole() {
 //		return "Le Gaulois " + nom + " : ";

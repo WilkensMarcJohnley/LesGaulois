@@ -18,6 +18,10 @@ public class Romain {
 		return nom;
 	}
 	
+	public int getForce() {
+		return force;
+	}
+	
 	public void parler(String texte) {
 		System.out.println(prendreParole() + "<< " + texte + ">>");
 	}
@@ -48,40 +52,39 @@ public class Romain {
 	private int calculResistanceEquipement(int forceCoup) {
 		String texte = "Ma force est de " + this.force + ", et la force du coup est de " + forceCoup;
 		int resistanceEquipement = 0;
-		if (!(nbEquipements == 0)) {
+		if (nbEquipements != 0) {
 			texte += "\nMais heureusement, grace à mon équipement sa force est diminué de ";
-			for (int i = 0; i < nbEquipements;) {
-				if ((equipements[i] != null &&
-				equipements[i].equals(Equipement.BOUCLIER)) == true) {
+			for (int i = 0; i < nbEquipements;i++) {
+				if (equipements[i] != null && equipements[i].equals(Equipement.BOUCLIER)) {
 					resistanceEquipement += 8;
 				} else {
 						System.out.println("Equipement casque");
 						resistanceEquipement += 5;
 				}
 				
-				i++;
 			}
 			
-			texte =+ resistanceEquipement + "!";
+			texte += resistanceEquipement + "!";
 		}
 		
 		parler(texte);
 		
 		forceCoup -= resistanceEquipement;
-		
+		if (forceCoup>=0) {
 		return forceCoup;
+		}
+		
+		return -forceCoup;
 		
 		}
 	
 	private Equipement[] ejecterEquipement() {
 		Equipement[] equipementEjecte = new Equipement[nbEquipements];
-		System.out.println("L'équipement de " + nom.toString() + " s'envole sous la force du coup.");
+		System.out.println("L'équipement de " + nom + " s'envole sous la force du coup.");
 		//TODO
 		int nbEquipementEjecte = 0;
 		for (int i = 0; i < nbEquipements; i++) {
-			if (equipements[i] == null) {
-					continue;
-				} else {
+			if (equipements[i] != null) {
 					equipementEjecte[nbEquipementEjecte] =
 					equipements[i];
 					nbEquipementEjecte++;
@@ -111,7 +114,7 @@ public class Romain {
 		return force>0;
 	}
 	
-	public void sEquipier(Equipement equipement) {
+	public void sEquiper(Equipement equipement) {
 		String parole;
 		switch(nbEquipements) {
 		case 2: parole= "le soldat " + nom + " est deja bien protege";
@@ -156,9 +159,9 @@ public class Romain {
 		obelix.recevoirCoup(forcecoup);
 		System.out.println(Equipement.CASQUE);
 		System.out.println(Equipement.BOUCLIER);
-		obelix.sEquipier(Equipement.CASQUE);
-		obelix.sEquipier(Equipement.CASQUE);
-		obelix.sEquipier(Equipement.BOUCLIER);
-		obelix.sEquipier(Equipement.BOUCLIER);
+		obelix.sEquiper(Equipement.CASQUE);
+		obelix.sEquiper(Equipement.CASQUE);
+		obelix.sEquiper(Equipement.BOUCLIER);
+		obelix.sEquiper(Equipement.BOUCLIER);
 	}
 }
