@@ -7,6 +7,7 @@ public class Gaulois {
 	private int nb_trophees=0;
 	private int effetPotion=1;
 	private Equipement[] frappe = new Equipement[100];
+	private Trophee[] trophee= new Trophee[100];
 	
 	public void boirePotion(int forcepotion) {
 		effetPotion+=forcepotion;
@@ -46,12 +47,12 @@ public class Gaulois {
 		return "Le gaulois " + nom + " : ";
 		}
 
-	public void faireUneDonnation(Musee musee) {
+	public void faireUneDonnation(Gaulois gaulois, Musee musee) {
 		if (nb_trophees>0) {
 			parler("« Je donne au musee tous mes trophees :\n");
-			for(int i=nb_trophees;i>0;i--) {
+			for(int i=nb_trophees-1;i>0;i--) {
 				System.out.println("- "+ frappe[i]+"\n");
-				musee.donnerTrophees(this,frappe[i]);
+				musee.donnerTrophees(gaulois,trophee[i]);
 				
 			}
 		}
