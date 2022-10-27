@@ -47,12 +47,12 @@ public class Gaulois {
 		return "Le gaulois " + nom + " : ";
 		}
 
-	public void faireUneDonnation(Gaulois gaulois, Musee musee) {
+	public void faireUneDonnation( Musee musee) {
 		if (nb_trophees>0) {
 			parler("« Je donne au musee tous mes trophees :\n");
 			for(int i=nb_trophees-1;i>0;i--) {
 				System.out.println("- "+ frappe[i]+"\n");
-				musee.donnerTrophees(gaulois,trophee[i]);
+				musee.donnerTrophees(trophee[i].getGaulois(),trophee[i]);
 				
 			}
 		}
